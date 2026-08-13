@@ -1,5 +1,7 @@
 # Magician Lord - Again Changes from Hell
 
+> **Important note:** This is the first romhack I've ever made, and it does not follow the guidelines I've established for my other patches (the game should remain fully playable in its vanilla state and all QoL features should be toggleable). I decided to keep it on this website because I still think it's great and I'm really proud of it. However, I plan to revisit it soon so it follows these guidelines, and also add some new features along the way.
+
 Magician Lord is a fantastic game, featuring outstanding graphics and music for its time.
 Unfortunately, it suffers from an extremely high difficulty level - the result of last-minute changes
 made to increase profitability for arcade operators.
@@ -9,7 +11,7 @@ The goal of this patch is to rebalance the difficulty to bring it closer to the 
 hours on it - time being the most precious resource for retro gamers. It's also a good warm-up for
 those who wish to later take on the brutality of the original :)
 
-> The patch applies to the ROM from **set 1** (the version released on the Neo-Geo **AES**), as it offers a more console-like experience: there's an introduction to the story, and each death sends you back to the last checkpoint.
+> The patch applies to the ROM from **set 1** (the version released on the Neo•Geo **AES**), as it offers a more console-like experience: there's an introduction to the story, and each death sends you back to the last checkpoint.
 
 
 ## List of Changes
