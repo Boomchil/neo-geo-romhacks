@@ -1,0 +1,34 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+
+# Companion tools - kept local, not published
+/tools/
+
+# Test ROMs - never commit (legality + size). Kept locally for testing.
+/maglord.zip
+/maglordh.zip
+/test
+
+# Generated index (rebuilt at build time)
+public/patches.index.json
+
+# Reference data for tests (official ROMs, copyrighted) - never committed
+/_ref-darksoft/
+/maglord/
+/maglordh/
+
+# Heavy source videos (uncompressed AVI) - only the transcoded clips are committed (public/.../media/*.mp4)
+*.avi
+
+# Raw IPS drops at the repo root (canonical files live in public/patches/)
+/maglord_p1.ips
+/maglord_s1.ips
+/english-engrish/
+
+# Python bytecode
+__pycache__/
+
+# Local design preview (not part of the app)
+/description-schemes.html

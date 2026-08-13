@@ -1,0 +1,1142 @@
+:root {
+  --bg: #16161a;
+  --bg-2: #1c1c21;
+  --surface: #26262d;
+  --surface-2: #2e2e36;
+  --border: #3a3a44;
+  --border-soft: #2f2f38;
+
+  --gold: #d4af37;
+  --gold-light: #ecca5e;
+  --gold-dark: #a9851f;
+
+  --text: #e9e9ee;
+  --muted: #9a9aa6;
+  --faint: #6c6c78;
+
+  --ok: #5fc97f;
+  --err: #e7706b;
+
+  --radius: 12px;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 50% -200px, rgba(212, 175, 55, 0.08), transparent 60%),
+    linear-gradient(180deg, var(--bg-2), var(--bg));
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.55;
+  min-height: 100vh;
+  overflow-x: clip;
+  /* the full-bleed game grid spans the viewport; clip any sub-pixel/scrollbar overflow */
+}
+
+#app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 28px 80px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.site-header .logo {
+  font-weight: 800;
+  font-size: clamp(26px, 5vw, 40px);
+  letter-spacing: 0.04em;
+  margin: 0;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 20px rgba(212, 175, 55, 0.15);
+}
+
+.header-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.hlink {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  border-radius: 999px;
+  padding: 7px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    border-color 0.18s,
+    color 0.18s,
+    filter 0.18s;
+}
+
+.hlink:hover {
+  border-color: var(--gold-dark);
+  color: var(--gold-light);
+}
+
+/* Links that pair an inline icon (SVG, currentColor) with a label */
+.hlink-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hlink-icon svg {
+  flex: none;
+}
+
+/* ---------- Modal (About / Disclaimer) ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.6);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.modal {
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 16px;
+  color: var(--gold-light);
+}
+
+.modal-close {
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.modal-close:hover {
+  color: var(--gold-light);
+}
+
+.modal-body {
+  padding: 18px 20px;
+  overflow-y: auto;
+}
+
+.gold-rule {
+  height: 2px;
+  width: 120px;
+  margin: 18px auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 2px;
+}
+
+.splash {
+  margin: 14px auto 0;
+  max-width: 560px;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gold);
+  opacity: 0.82;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.18s;
+}
+
+.splash:hover {
+  opacity: 1;
+}
+
+/* ---------- Views / titles / breadcrumb ---------- */
+.view {
+  margin-bottom: 28px;
+}
+
+.view-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 16px;
+}
+
+/* ---------- Game grid ---------- */
+/* The grid breaks out of #app's 1200px text column to a wider band, so the cards/logos can be larger
+   on a wide screen while the rest of the page stays at a comfortable reading width. */
+.games-view {
+  margin-inline: calc(50% - 50vw);
+}
+
+.games-grid {
+  max-width: 1408px;
+  margin-inline: auto;
+  padding-inline: 28px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  /* every card the same height, across rows too (rows equalise to the tallest) */
+  grid-auto-rows: 1fr;
+}
+
+@media (max-width: 1024px) {
+  .games-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 460px) {
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.game-card {
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 8px 14px;
+  /* anchor + clip the diagonal "Coming soon" corner ribbon */
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    border-color 0.18s,
+    transform 0.18s,
+    box-shadow 0.18s;
+  color: inherit;
+  font: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* vertically center the logo within the (equal-height) card */
+  gap: 12px;
+}
+
+.game-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.1);
+}
+
+.game-card.selected {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold), 0 8px 24px rgba(212, 175, 55, 0.18);
+}
+
+.game-logo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-logo img {
+  display: block;
+  /* Logo fills the card width (big); its height follows the aspect ratio. A max-height caps unusually
+     tall logos so one doesn't blow up the (equal) card height; object-fit keeps the ratio when capped. */
+  width: 100%;
+  height: auto;
+  /* per-game zoom (game.json "logoZoom" %, default 100) raises the height cap so a small/near-square
+     logo can be enlarged; the card row grows to match (cards stay equal height) */
+  max-height: calc(120px * var(--logo-zoom, 1));
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.game-name {
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+}
+
+/* Teaser cards (coming soon / later): still clickable (they show a description), logo dimmed + ribbon */
+.game-card.coming .game-logo {
+  opacity: 0.72;
+}
+
+/* Diagonal corner ribbon in the top-right of a teaser card (clipped by the card's overflow) */
+.coming-badge {
+  position: absolute;
+  top: 30px;
+  right: -52px;
+  width: 170px;
+  transform: rotate(45deg);
+  padding: 4px 0;
+  line-height: 1;
+  /* thin band: don't inherit the page's 1.55 line-height */
+  background: linear-gradient(180deg, var(--gold-light), var(--gold-dark));
+  color: #16161a;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+/* "Coming soon" tag above a teaser game's description */
+.coming-soon-tag {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--gold-dark);
+  border-radius: 999px;
+  padding: 3px 12px;
+}
+
+.coming-soon-note {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* ---------- Choose patch (buttons) ---------- */
+.patch-picker {
+  margin-bottom: 24px;
+}
+
+.patch-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.patch-btn {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  border-radius: 999px;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition:
+    border-color 0.18s,
+    color 0.18s;
+}
+
+.patch-btn:hover {
+  border-color: var(--gold-dark);
+}
+
+.patch-btn.active {
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+
+.patch-picker-summary {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ---------- Patch view (stacked, full width) ---------- */
+.patch-desc {
+  margin-bottom: 28px;
+}
+
+/* Description / Additional-notes tabs */
+.desc-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 20px;
+}
+
+.desc-tab {
+  appearance: none;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 8px 15px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.desc-tab:hover {
+  color: var(--gold-light);
+}
+
+.desc-tab.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+.desc-tabpanel {
+  display: none;
+}
+
+.desc-tabpanel.active {
+  display: block;
+}
+
+/* Version chip, shown inline at the end of the patch title */
+.patch-version {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--gold-dark);
+  border-radius: 999px;
+  padding: 2px 11px;
+  margin-left: 0.5em;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.patch-title {
+  font-size: 24px;
+  color: var(--gold-light);
+  margin: 0 0 12px;
+}
+
+.issues-link {
+  display: inline-block;
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.issues-link:hover {
+  color: var(--gold-light);
+}
+
+.side-title {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ---------- Panel ---------- */
+.panel {
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  box-shadow: var(--shadow);
+}
+
+.desc {
+  color: var(--text);
+  --desc-label: #f6e4b2;
+  --desc-bold: #eee1b6;
+  --desc-accent: #ece2bd;
+  --desc-quote-bar: #d4b78f;
+  --desc-quote-bg: rgba(236, 217, 189, 0.09);
+}
+
+.desc h1,
+.desc h2,
+.desc h3,
+.desc h4 {
+  color: var(--gold);
+  line-height: 1.25;
+}
+
+/* Clear descending scale so `#` reads as the big title and `##`/`###` shrink the sub-sections. */
+.desc h1 {
+  font-size: 27px;
+  margin-top: 0;
+}
+
+.desc h2 {
+  font-size: 19px;
+  margin-top: 1.5em;
+}
+
+.desc h3 {
+  font-size: 15px;
+  margin-top: 1.2em;
+}
+
+.desc h4 {
+  font-size: 13px;
+  margin-top: 1em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Inline bold = warm cream; a bullet's leading label = lilac, so the two never look identical */
+.desc strong {
+  color: var(--desc-bold);
+}
+
+.desc li>strong:first-child {
+  color: var(--desc-label);
+}
+
+.desc em {
+  color: var(--text);
+}
+
+/* Lists: keep a solid round bullet at EVERY nesting level (incl. indented ones), tinted lilac */
+.desc ul {
+  margin: 10px 0;
+  padding-left: 1.4em;
+  list-style-type: disc;
+}
+
+.desc ul ul {
+  margin: 6px 0 8px;
+}
+
+.desc li {
+  margin: 6px 0;
+}
+
+.desc li::marker {
+  color: var(--desc-accent);
+}
+
+/* Neo Geo controller-button badges: [A]=red, [B]=yellow, [C]=green, [D]=blue, arrows [↑↓←→]=grey */
+.desc .mbtn-group {
+  white-space: nowrap;
+  /* keep a combo like A+B on one line */
+}
+
+.desc .mbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.78em;
+  line-height: 1;
+  color: #fff;
+  vertical-align: middle;
+  margin: 0 1px;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+.desc .mbtn-a {
+  background: #ff0800;
+  color: #000;
+}
+
+.desc .mbtn-b {
+  background: #ffea00;
+  color: #000;
+}
+
+.desc .mbtn-c {
+  background: #20e237;
+  color: #000;
+}
+
+.desc .mbtn-d {
+  background: #2479f7;
+  color: #000;
+}
+
+/* Directional arrows [↑] [↓] [←] [→] — grey d-pad style */
+.desc .mbtn-dir {
+  background: linear-gradient(180deg, #7b7b86, #565660);
+  color: #fff;
+  font-size: 0.95em;
+}
+
+.desc .mbtn-plus {
+  margin: 0 2px;
+  font-weight: 700;
+}
+
+.desc code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  background: #00000040;
+  border: 1px solid var(--border-soft);
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+
+.desc pre {
+  background: #00000050;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.desc pre code {
+  border: 0;
+  background: none;
+  padding: 0;
+}
+
+.desc table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+}
+
+.desc th,
+.desc td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.desc a {
+  color: var(--desc-accent);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--desc-accent) 45%, transparent);
+}
+
+.desc a:hover {
+  border-bottom-color: var(--desc-accent);
+}
+
+.desc blockquote {
+  border-left: 3px solid var(--desc-quote-bar);
+  margin: 16px 0;
+  padding: 11px 16px;
+  color: var(--text);
+  background: var(--desc-quote-bg);
+  border-radius: 0 8px 8px 0;
+}
+
+.desc blockquote strong {
+  color: var(--desc-label);
+}
+
+/* ---------- Media embeds (clips / screenshots) ---------- */
+.desc-media {
+  margin: 16px auto;
+  max-width: 560px;
+  text-align: center;
+}
+
+.desc-video,
+.desc-img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #000;
+  image-rendering: pixelated;
+  /* crisp pixel art when upscaled */
+}
+
+.desc-media .desc-video,
+.desc-media .desc-img {
+  width: 100%;
+  display: block;
+}
+
+.desc-media figcaption {
+  margin-top: 6px;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* Before / after "blink": two shots stacked, top one cross-toggled ~1s each.
+   Used standalone (.ba-flip) and inside the gallery stage. */
+.ba-layers {
+  position: relative;
+  display: block;
+}
+
+.ba-layers .ba-a,
+.ba-layers .ba-b {
+  display: block;
+}
+
+.ba-layers .ba-a img,
+.ba-layers .ba-a video,
+.ba-layers .ba-b img,
+.ba-layers .ba-b video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #000;
+  image-rendering: pixelated;
+}
+
+.ba-layers .ba-b {
+  position: absolute;
+  inset: 0;
+  animation: ba-flip 2s infinite;
+}
+
+@keyframes ba-flip {
+
+  0%,
+  49.99% {
+    opacity: 0;
+    /* first ~1s: A (before) shows */
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    /* next ~1s: B (after) shows */
+  }
+}
+
+/* No flashing for reduced-motion users: just stack the two shots */
+@media (prefers-reduced-motion: reduce) {
+  .ba-layers .ba-b {
+    position: static;
+    inset: auto;
+    animation: none;
+    opacity: 1;
+    margin-top: 8px;
+  }
+}
+
+/* Standalone before/after block */
+.ba-flip {
+  margin: 18px auto;
+  max-width: 440px;
+  text-align: center;
+}
+
+.ba-flip figcaption {
+  margin-top: 6px;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* Gallery carousel: a ×2 (640×448) stage above a strip of native-size (320×224) thumbnails */
+.gallery {
+  margin: 18px 0;
+}
+
+.gallery-stage {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.gallery-stage .stage-media {
+  display: block;
+  width: 640px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #000;
+  image-rendering: pixelated;
+}
+
+.gallery-stage .ba-layers {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.gallery-stage figcaption {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.4;
+  min-height: 1.4em;
+  /* reserve a line even when there's no caption, so the stage doesn't jump */
+  font-style: italic;
+  color: var(--muted);
+}
+
+.gallery-strip {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+/* Single-media gallery: no carousel — hide the thumbnail strip (the stage still shows the media) */
+.gallery-solo .gallery-strip {
+  display: none;
+}
+
+.gallery-thumb {
+  flex: 0 0 auto;
+  width: 320px;
+  max-width: 60vw;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  line-height: 0;
+  opacity: 0.55;
+  transition:
+    opacity 0.15s,
+    border-color 0.15s;
+}
+
+.gallery-thumb:hover {
+  opacity: 1;
+}
+
+.gallery-thumb.is-active {
+  opacity: 1;
+  border-color: var(--gold);
+}
+
+.gallery-thumb .thumb-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  background: #000;
+  image-rendering: pixelated;
+}
+
+.gallery-thumb .thumb-badge {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 22px;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+/* ---------- Dropzone ---------- */
+.dropzone {
+  margin-top: 18px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 30px 20px;
+  text-align: center;
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    border-color 0.18s,
+    background 0.18s;
+}
+
+.dropzone:hover,
+.dropzone.drag {
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.05);
+  color: var(--text);
+}
+
+.dropzone .dz-icon {
+  font-size: 26px;
+}
+
+.dropzone .zip-name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--gold-light);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 1px 6px;
+  white-space: nowrap;
+}
+
+/* ---------- File checklist ---------- */
+/* One-line validation status under the dropzone */
+.file-status {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.file-status.ok {
+  color: var(--ok);
+  background: rgba(120, 190, 130, 0.08);
+  border-color: rgba(120, 190, 130, 0.35);
+}
+
+.file-status.err {
+  color: var(--err);
+  background: rgba(231, 112, 107, 0.08);
+  border-color: rgba(231, 112, 107, 0.35);
+}
+
+/* ---------- Format selector & actions ---------- */
+/* Small field label (e.g. "Choose your output format"), matching the "Version" label */
+.field-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 20px 0 9px;
+}
+
+.formats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.fmt {
+  flex: 1;
+  min-width: 120px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: border-color 0.18s;
+  position: relative;
+}
+
+.fmt.active {
+  border-color: var(--gold);
+}
+
+.fmt[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.fmt .fmt-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.fmt .fmt-sub {
+  font-size: 11px;
+  color: var(--faint);
+}
+
+.fmt .soon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.fmt-note {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--gold);
+}
+
+/* ---------- Version selector ---------- */
+.version-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.version-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.versions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.version {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    border-color 0.18s,
+    color 0.18s;
+}
+
+.version:hover {
+  border-color: var(--gold-dark);
+}
+
+.version.active {
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+
+.actions {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Primary action: full-width, matches the panel radius, subtle gold glow */
+.btn {
+  width: 100%;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold-dark));
+  color: #20180a;
+  border: 0;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 14px 22px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.16);
+  transition:
+    filter 0.18s,
+    transform 0.1s,
+    box-shadow 0.18s;
+}
+
+.btn:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.26);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  filter: grayscale(0.85) brightness(0.6);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.msg {
+  font-size: 13px;
+}
+
+.msg.ok {
+  color: var(--ok);
+}
+
+.msg.err {
+  color: var(--err);
+}
+
+.msg.info {
+  color: var(--muted);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 30px;
+}
+
+footer.site-footer {
+  margin-top: 48px;
+  text-align: center;
+  color: var(--faint);
+  font-size: 12px;
+}
+
+footer.site-footer .footer-feedback {
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+
+footer.site-footer .footer-link {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-dark);
+}
+
+footer.site-footer .footer-link:hover {
+  color: var(--gold-light);
+  border-bottom-color: var(--gold);
+}
+
+footer.site-footer .copyright {
+  color: var(--muted);
+}
+
+footer.site-footer .legal {
+  margin: 8px auto 0;
+  max-width: 620px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--faint);
+  opacity: 0.85;
+}

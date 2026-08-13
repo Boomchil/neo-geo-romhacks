@@ -1,0 +1,89 @@
+{
+  "id": "wjammers",
+  "name": "Windjammers - Endless Breeze",
+  "logoZoom": 120,
+  "parent": null,
+  "year": 2026,
+  "genre": 3,
+  "screenshot": 181,
+  "developer": "Data East",
+  "files": [
+    {
+      "name": "065-c1.c1",
+      "crc32": "c7650204",
+      "size": 1048576,
+      "region": "C",
+      "order": 0
+    },
+    {
+      "name": "065-c2.c2",
+      "crc32": "d9f3e71d",
+      "size": 1048576,
+      "region": "C",
+      "order": 1
+    },
+    {
+      "name": "065-c3.c3",
+      "crc32": "40986386",
+      "size": 1048576,
+      "region": "C",
+      "order": 2
+    },
+    {
+      "name": "065-c4.c4",
+      "crc32": "715e15ff",
+      "size": 1048576,
+      "region": "C",
+      "order": 3
+    },
+    {
+      "name": "065-m1.m1",
+      "crc32": "52c23cfc",
+      "size": 131072,
+      "region": "M",
+      "order": 0
+    },
+    {
+      "name": "065-p1.p1",
+      "crc32": "6692c140",
+      "size": 1048576,
+      "region": "P",
+      "order": 0
+    },
+    {
+      "name": "065-s1.s1",
+      "crc32": "074b5723",
+      "size": 131072,
+      "region": "S",
+      "order": 0
+    },
+    {
+      "name": "065-v1.v1",
+      "crc32": "ce8b3698",
+      "size": 1048576,
+      "region": "V1",
+      "order": 0
+    },
+    {
+      "name": "065-v2.v2",
+      "crc32": "659f9b96",
+      "size": 1048576,
+      "region": "V1",
+      "order": 1
+    },
+    {
+      "name": "065-v3.v3",
+      "crc32": "39f73061",
+      "size": 1048576,
+      "region": "V1",
+      "order": 2
+    },
+    {
+      "name": "065-v4.v4",
+      "crc32": "5dee7963",
+      "size": 1048576,
+      "region": "V1",
+      "order": 3
+    }
+  ]
+}

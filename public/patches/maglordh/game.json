@@ -1,0 +1,96 @@
+{
+  "id": "maglordh",
+  "name": "Magician Lord - ACFH",
+  "parent": "maglord",
+  "year": 2025,
+  "genre": 5,
+  "screenshot": 90,
+  "developer": "Alpha Denshi Co.",
+  "adpcmaSize": 2097152,
+  "files": [
+    {
+      "name": "005-p1.p1",
+      "crc32": "599043c5",
+      "size": 524288,
+      "region": "P",
+      "order": 0
+    },
+    {
+      "name": "005-s1.s1",
+      "crc32": "1c5369a2",
+      "size": 131072,
+      "region": "S",
+      "order": 0
+    },
+    {
+      "name": "005-m1.m1",
+      "crc32": "26259f0f",
+      "size": 262144,
+      "region": "M",
+      "order": 0
+    },
+    {
+      "name": "005-v11.v11",
+      "crc32": "cc0455fd",
+      "size": 524288,
+      "region": "V1",
+      "order": 0
+    },
+    {
+      "name": "005-v21.v21",
+      "crc32": "f94ab5b7",
+      "size": 524288,
+      "region": "V2",
+      "order": 0
+    },
+    {
+      "name": "005-v22.v22",
+      "crc32": "232cfd04",
+      "size": 524288,
+      "region": "V2",
+      "order": 1
+    },
+    {
+      "name": "005-c1.c1",
+      "crc32": "806aee34",
+      "size": 524288,
+      "region": "C",
+      "order": 0
+    },
+    {
+      "name": "005-c2.c2",
+      "crc32": "34aa9a86",
+      "size": 524288,
+      "region": "C",
+      "order": 1
+    },
+    {
+      "name": "005-c3.c3",
+      "crc32": "c4c2b926",
+      "size": 524288,
+      "region": "C",
+      "order": 2
+    },
+    {
+      "name": "005-c4.c4",
+      "crc32": "9c46dcf4",
+      "size": 524288,
+      "region": "C",
+      "order": 3
+    },
+    {
+      "name": "005-c5.c5",
+      "crc32": "69086dec",
+      "size": 524288,
+      "region": "C",
+      "order": 4
+    },
+    {
+      "name": "005-c6.c6",
+      "crc32": "ab7ac142",
+      "size": 524288,
+      "region": "C",
+      "order": 5
+    }
+  ]
+}

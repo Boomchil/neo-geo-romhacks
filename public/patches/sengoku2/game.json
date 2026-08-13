@@ -1,0 +1,103 @@
+{
+  "id": "sengoku2",
+  "name": "Sengoku 2 - Let there be blood",
+  "parent": null,
+  "year": 1993,
+  "genre": 2,
+  "comingSoon": true,
+  "screenshot": 149,
+  "developer": "SNK",
+  "cLayout": {
+    "regionSize": 6291456,
+    "pairs": [
+      {
+        "segments": [
+          {
+            "src": 0,
+            "dst": 0,
+            "len": 2097152
+          },
+          {
+            "src": 2097152,
+            "dst": 4194304,
+            "len": 2097152
+          }
+        ]
+      },
+      {
+        "segments": [
+          {
+            "src": 0,
+            "dst": 2097152,
+            "len": 1048576
+          }
+        ]
+      }
+    ]
+  },
+  "files": [
+    {
+      "name": "040-c1.c1",
+      "crc32": "faa8ea99",
+      "size": 2097152,
+      "region": "C",
+      "order": 0
+    },
+    {
+      "name": "040-c2.c2",
+      "crc32": "87d0ec65",
+      "size": 2097152,
+      "region": "C",
+      "order": 1
+    },
+    {
+      "name": "040-c3.c3",
+      "crc32": "24b5ba80",
+      "size": 524288,
+      "region": "C",
+      "order": 2
+    },
+    {
+      "name": "040-c4.c4",
+      "crc32": "1c9e9930",
+      "size": 524288,
+      "region": "C",
+      "order": 3
+    },
+    {
+      "name": "040-m1.m1",
+      "crc32": "d4de4bca",
+      "size": 131072,
+      "region": "M",
+      "order": 0
+    },
+    {
+      "name": "040-p1.p1",
+      "crc32": "6dde02c2",
+      "size": 1048576,
+      "region": "P",
+      "order": 0
+    },
+    {
+      "name": "040-s1.s1",
+      "crc32": "cd9802a3",
+      "size": 131072,
+      "region": "S",
+      "order": 0
+    },
+    {
+      "name": "040-v1.v1",
+      "crc32": "71cb4b5d",
+      "size": 2097152,
+      "region": "V1",
+      "order": 0
+    },
+    {
+      "name": "040-v2.v2",
+      "crc32": "c5cece01",
+      "size": 1048576,
+      "region": "V1",
+      "order": 1
+    }
+  ]
+}

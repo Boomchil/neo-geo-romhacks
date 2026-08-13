@@ -1,0 +1,39 @@
+{
+  "id": "maglord-acfh",
+  "game": "maglordh",
+  "version": "1.0.0",
+  "files": [
+    {
+      "rom": "005-s1.s1",
+      "ips": "maglord_s1.ips",
+      "sourceCRC": "1c5369a2",
+      "targetCRC": "0e1839b2"
+    }
+  ],
+  "variants": [
+    {
+      "id": "fr",
+      "label": "English/Français",
+      "files": [
+        {
+          "rom": "005-p1.p1",
+          "ips": "fr/maglord_p1.ips",
+          "sourceCRC": "599043c5",
+          "targetCRC": "f201c65a"
+        }
+      ]
+    },
+    {
+      "id": "en",
+      "label": "English/Engrish",
+      "files": [
+        {
+          "rom": "005-p1.p1",
+          "ips": "en/maglord_p1.ips",
+          "sourceCRC": "599043c5",
+          "targetCRC": "9486bcf4"
+        }
+      ]
+    }
+  ]
+}

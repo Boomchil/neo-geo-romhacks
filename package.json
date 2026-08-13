@@ -1,0 +1,24 @@
+{
+  "name": "auto-patch",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Neo Geo ROM patcher (IPS romhacks) - 100% in-browser, hostable on GitHub Pages",
+  "scripts": {
+    "build:index": "node scripts/build-index.mjs",
+    "dev": "npm run build:index && vite",
+    "build": "npm run build:index && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "make-patch": "python3 tools/make-patch.py",
+    "make-clip": "node tools/make-clip.mjs"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.7"
+  }
+}

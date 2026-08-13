@@ -1,0 +1,110 @@
+{
+  "id": "pulstar",
+  "name": "Pulstar Aegis",
+  "parent": null,
+  "year": 2026,
+  "genre": 7,
+  "screenshot": 126,
+  "comingSoon": true,
+  "developer": "Aicom",
+  "files": [
+    {
+      "name": "089-c1.c1",
+      "crc32": "f4e97332",
+      "size": 4194304,
+      "region": "C",
+      "order": 0
+    },
+    {
+      "name": "089-c2.c2",
+      "crc32": "836d14da",
+      "size": 4194304,
+      "region": "C",
+      "order": 1
+    },
+    {
+      "name": "089-c3.c3",
+      "crc32": "913611c4",
+      "size": 4194304,
+      "region": "C",
+      "order": 2
+    },
+    {
+      "name": "089-c4.c4",
+      "crc32": "44cef0e3",
+      "size": 4194304,
+      "region": "C",
+      "order": 3
+    },
+    {
+      "name": "089-c5.c5",
+      "crc32": "89baa1d7",
+      "size": 4194304,
+      "region": "C",
+      "order": 4
+    },
+    {
+      "name": "089-c6.c6",
+      "crc32": "b2594d56",
+      "size": 4194304,
+      "region": "C",
+      "order": 5
+    },
+    {
+      "name": "089-c7.c7",
+      "crc32": "6a5618ca",
+      "size": 2097152,
+      "region": "C",
+      "order": 6
+    },
+    {
+      "name": "089-c8.c8",
+      "crc32": "a223572d",
+      "size": 2097152,
+      "region": "C",
+      "order": 7
+    },
+    {
+      "name": "089-m1.m1",
+      "crc32": "ff3df7c7",
+      "size": 131072,
+      "region": "M",
+      "order": 0
+    },
+    {
+      "name": "089-p1.p1",
+      "crc32": "5e5847a2",
+      "size": 1048576,
+      "region": "P",
+      "order": 0
+    },
+    {
+      "name": "089-p2.sp2",
+      "crc32": "028b774c",
+      "size": 2097152,
+      "region": "P",
+      "order": 1
+    },
+    {
+      "name": "089-s1.s1",
+      "crc32": "c79fc2c8",
+      "size": 131072,
+      "region": "S",
+      "order": 0
+    },
+    {
+      "name": "089-v1.v1",
+      "crc32": "6f726ecb",
+      "size": 4194304,
+      "region": "V1",
+      "order": 0
+    },
+    {
+      "name": "089-v2.v2",
+      "crc32": "9d2db551",
+      "size": 4194304,
+      "region": "V1",
+      "order": 1
+    }
+  ]
+}
