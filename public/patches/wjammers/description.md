@@ -16,13 +16,15 @@ Small fixes, big difference!
 ### Others
 - **Dog Distance** and **Flying Disc Bowling** are instantly playable from the main menu. Please note that they can only be played by Player 1.
 - **EXPERT difficulty** is unlocked by default if you're looking for a *high-flying* challenge.
-- The awful, eye-straining flashing background shown before a match has been removed.
+- **Supersonic Mode** is avalaible if you're looking for a very fast paced VS mode. When enabled, the disc is thrown at twice its base speed.
+- The awful, eye-straining flashing background shown before a match has been replaced with a softer one.
 - The left and right black bars have been removed, giving you a glorious 16-pixel wider picture!
 - All menu and minigame timers have been disabled.
 - The "Add +2 to difficulty" logic, applied when the system is in MVS mode and the region is not set to Japan, has been disabled.
 
 ### Bugfix
 - Fixed the incorrect lower-right tile of the title backdrop, visible when the Data East logo is displayed.
+- Some incorrect pixels were removed, alongside a f
 
 ### Gallery
 
@@ -33,5 +35,22 @@ media/config.png Epic fights incoming
 media/main_menu.png Play the awesome mini-games directly
 media/wj_no_more_flash.mp4 Yay! No more seizure!
 ```
+
+## Changelog
+
+**v1.2.0**
+
+- New "Supersonic Mode" as requested, which make each shot twice as fast (usually triggered by pressing A *right* after receiving the disc). Should be used specifically on VS mode as it kinda kills the fun when playing against the CPU ^^'
+
+- The original VS flashing screen was *\*a little\** over the top, but the black screen was not really in the Windjammers spirit. I went with an in-between solution that locks the flashing screen to the first frame (technically the animmation still plays, but I duplicated the first frame four times so it always displays the same thing), removes the odd-numbered black frames, and changes the palette's brightest colors each frame to simulate a glowing effect.
+
+- Fixed the original logo which had some [bad pixel colors](https://github.com/Boomchil/neo-geo-romhacks/issues/1) (Thanks Tuxosaurus for pointing it out!).
+
+- Fixed some details in the character selection screen (bad shadows and useless dots). Replaced the misleading "For Beginner", "For Medium" & "For Expert" labels with "Light", "Medium" & "Heavy". Now it also displays characters' full name.
+
+**v1.1.0**
+
+- Initial release, iterated from my ["Windjammers - Let me play longer"](https://github.com/Boomchil/wjammers-lmpl) romhack.
+
 
 

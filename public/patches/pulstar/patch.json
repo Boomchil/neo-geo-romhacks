@@ -1,0 +1,31 @@
+{
+  "id": "pulstar-aegis",
+  "game": "pulstar",
+  "version": "1.0.0",
+  "files": [
+    {
+      "rom": "089-c7.c7",
+      "ips": "089-c7.c7.ips",
+      "sourceCRC": "6a5618ca",
+      "targetCRC": "3a74b3a2"
+    },
+    {
+      "rom": "089-c8.c8",
+      "ips": "089-c8.c8.ips",
+      "sourceCRC": "a223572d",
+      "targetCRC": "8a0bb5d5"
+    },
+    {
+      "rom": "089-p1.p1",
+      "ips": "089-p1.p1.ips",
+      "sourceCRC": "5e5847a2",
+      "targetCRC": "dcb02236"
+    },
+    {
+      "rom": "089-s1.s1",
+      "ips": "089-s1.s1.ips",
+      "sourceCRC": "c79fc2c8",
+      "targetCRC": "2a659ff9"
+    }
+  ]
+}

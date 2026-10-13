@@ -4,28 +4,40 @@
   "version": "1.1.0",
   "files": [
     {
+      "rom": "065-c1.c1",
+      "ips": "065-c1.c1.ips",
+      "sourceCRC": "c7650204",
+      "targetCRC": "e267ae0e"
+    },
+    {
+      "rom": "065-c2.c2",
+      "ips": "065-c2.c2.ips",
+      "sourceCRC": "d9f3e71d",
+      "targetCRC": "b26f6d16"
+    },
+    {
       "rom": "065-c3.c3",
       "ips": "065-c3.c3.ips",
       "sourceCRC": "40986386",
-      "targetCRC": "153363b0"
+      "targetCRC": "2fb1c407"
     },
     {
       "rom": "065-c4.c4",
       "ips": "065-c4.c4.ips",
       "sourceCRC": "715e15ff",
-      "targetCRC": "c7b5b02d"
+      "targetCRC": "1fb46167"
     },
     {
       "rom": "065-p1.p1",
       "ips": "065-p1.p1.ips",
       "sourceCRC": "6692c140",
-      "targetCRC": "042fbcdf"
+      "targetCRC": "e82fae8b"
     },
     {
       "rom": "065-s1.s1",
       "ips": "065-s1.s1.ips",
       "sourceCRC": "074b5723",
-      "targetCRC": "9827f989"
+      "targetCRC": "0b9ac678"
     }
   ]
 }

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEO•GEO romhacks — theme preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@700;800;900&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* ============================================================
+       Preview page chrome (neutral, not part of any theme)
+       ============================================================ */
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: #060608;
+      color: #e9e9ee;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    .intro {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 40px 28px 8px;
+    }
+    .intro h1 { font-size: 22px; margin: 0 0 6px; letter-spacing: 0.02em; }
+    .intro p { margin: 0; color: #9a9aa6; font-size: 14px; max-width: 780px; }
+    .intro code {
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      background: #17161a; border: 1px solid #2f2f38; border-radius: 5px;
+      padding: 1px 5px; font-size: 0.88em; color: #ecca5e;
+    }
+    .intro .fonts { color: #cfcfd8; }
+
+    .variant {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 28px 44px;
+    }
+    /* Label bar above each rendered frame */
+    .label {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 12px 4px 16px;
+    }
+    .label .badge {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #060608; background: #e9e9ee; border-radius: 6px; padding: 3px 8px;
+    }
+    .label .name { font-size: 16px; font-weight: 700; }
+    .label .meta { font-size: 12.5px; color: #9a9aa6; }
+    .label .fam {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+      border-radius: 999px; padding: 2px 9px;
+    }
+    .label .fam.amber  { color: #ffce70; background: rgba(245,166,35,0.12);  border: 1px solid rgba(245,166,35,0.4); }
+    .label .fam.violet { color: #c6aaff; background: rgba(157,107,255,0.12); border: 1px solid rgba(157,107,255,0.4); }
+    .swatches { display: inline-flex; gap: 6px; margin-left: auto; }
+    .swatch {
+      width: 22px; height: 22px; border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    /* The rendered mini-site, one per theme */
+    .site {
+      color: var(--text);
+      font-family: var(--font);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 34px 28px 40px;
+      overflow: hidden;
+      background:
+        radial-gradient(1000px 420px at 50% -140px, color-mix(in srgb, var(--gold) 14%, transparent), transparent 62%),
+        linear-gradient(180deg, var(--bg-2), var(--bg));
+    }
+
+    /* ---------- Header ---------- */
+    .site .site-header { text-align: center; margin-bottom: 30px; }
+    .site .logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(26px, 4vw, 40px);
+      letter-spacing: 0.04em;
+      margin: 0;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 22px color-mix(in srgb, var(--gold) 26%, transparent);
+    }
+    .site .header-links {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 16px;
+    }
+    .site .hlink {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font: inherit; font-size: 13px;
+      border-radius: 999px; padding: 7px 16px;
+      cursor: pointer; text-decoration: none;
+      transition: border-color 0.18s, color 0.18s;
+    }
+    .site .hlink:hover { border-color: var(--gold-dark); color: var(--gold-light); }
+    .site .gold-rule {
+      height: 2px; width: 120px; margin: 18px auto 0;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border-radius: 2px;
+    }
+    .site .splash {
+      margin: 14px auto 0; max-width: 560px;
+      font-style: italic; font-size: 13px;
+      color: var(--gold); opacity: 0.9;
+    }
+
+    /* ---------- Game grid ---------- */
+    .site .games-grid {
+      max-width: 1408px; margin-inline: auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+      grid-auto-rows: 1fr;
+    }
+    @media (max-width: 1024px) { .site .games-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 720px)  { .site .games-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 460px)  { .site .games-grid { grid-template-columns: 1fr; } }
+
+    .site .game-card {
+      background: linear-gradient(180deg, var(--surface), var(--surface-2));
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 8px 14px;
+      position: relative; overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px;
+    }
+    .site .game-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px color-mix(in srgb, var(--gold) 16%, transparent);
+    }
+    .site .game-card.selected {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px var(--gold), 0 8px 26px color-mix(in srgb, var(--gold) 24%, transparent);
+    }
+    .site .game-logo { width: 100%; display: flex; align-items: center; justify-content: center; }
+    .site .game-logo img {
+      display: block; width: 100%; height: auto;
+      max-height: calc(120px * var(--logo-zoom, 1));
+      object-fit: contain; image-rendering: pixelated;
+    }
+    .site .game-card.coming .game-logo { opacity: 0.72; }
+    .site .coming-badge {
+      position: absolute; top: 30px; right: -52px; width: 170px;
+      transform: rotate(45deg);
+      padding: 4px 0; line-height: 1;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold-dark));
+      color: var(--on-accent);
+      font-size: 9px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+      text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.5); pointer-events: none;
+    }
+
+    /* ============================================================
+       Theme token sets — darker grounds, higher-contrast accents.
+       Title font Orbitron + body Chakra Petch fixed across all.
+       ============================================================ */
+    .site {
+      --font: "Chakra Petch", sans-serif;
+      --font-display: "Orbitron", sans-serif;
+    }
+
+    /* --- Amber family --- */
+    .t1 { /* Amber */
+      --bg:#0a0806; --bg-2:#100c08; --surface:#1a1510; --surface-2:#221b13;
+      --border:#3a2f1e; --border-soft:#2a2117;
+      --gold:#f5a623; --gold-light:#ffcf74; --gold-dark:#b9741a;
+      --text:#f4efe8; --muted:#b3a795; --on-accent:#140d05;
+    }
+    .t2 { /* Honey Gold */
+      --bg:#0a0a07; --bg-2:#110f0a; --surface:#1a1710; --surface-2:#221e13;
+      --border:#3b331d; --border-soft:#2a2515;
+      --gold:#ecc02e; --gold-light:#ffe27f; --gold-dark:#ad8916;
+      --text:#f5f0e6; --muted:#b4aa92; --on-accent:#151004;
+    }
+    .t3 { /* Ember Orange */
+      --bg:#0b0705; --bg-2:#120c08; --surface:#1c140f; --surface-2:#251912;
+      --border:#402c1f; --border-soft:#2d1f16;
+      --gold:#f47a2a; --gold-light:#ffab5e; --gold-dark:#b85018;
+      --text:#f5ece5; --muted:#b6a597; --on-accent:#160c05;
+    }
+
+    /* --- Violet family --- */
+    .t4 { /* Electric Violet */
+      --bg:#08070d; --bg-2:#0e0b16; --surface:#171125; --surface-2:#1f1830;
+      --border:#362a52; --border-soft:#241d34;
+      --gold:#9d6bff; --gold-light:#c6aaff; --gold-dark:#6d3ed8;
+      --text:#f1ecf7; --muted:#a99cbd; --on-accent:#0c0818;
+    }
+    .t5 { /* Neon Amethyst */
+      --bg:#0a0710; --bg-2:#110b1a; --surface:#1c1330; --surface-2:#251a3d;
+      --border:#3d2a5c; --border-soft:#2b1f43;
+      --gold:#cf5cff; --gold-light:#e7a9ff; --gold-dark:#9436cf;
+      --text:#f2ecf8; --muted:#ac9dc0; --on-accent:#12081c;
+    }
+    .t6 { /* Indigo Violet */
+      --bg:#08080f; --bg-2:#0d0d1a; --surface:#15142b; --surface-2:#1c1b38;
+      --border:#2f2d55; --border-soft:#212040;
+      --gold:#7d74ff; --gold-light:#ada6ff; --gold-dark:#4f43d1;
+      --text:#edecf9; --muted:#9f9cc0; --on-accent:#0a0918;
+    }
+  </style>
+</head>
+<body>
+  <div class="intro">
+    <h1>NEO•GEO romhacks — theme preview</h1>
+    <p>
+      The home page rendered on darker, higher-contrast grounds, in two accent families:
+      <b class="fonts">amber</b> and <b class="fonts">violet</b>. Title font <b class="fonts">Orbitron</b>,
+      body font <b class="fonts">Chakra Petch</b> across all. First card is shown <b class="fonts">selected</b>;
+      hover a card for the accent. Throwaway file — delete <code>theme-preview.html</code> when done.
+    </p>
+  </div>
+  <div id="app"></div>
+
+  <script>
+    const GAMES = [
+      { id: 'maglordh', name: 'Magician Lord - ACFH', selected: true },
+      { id: 'pulstar',  name: 'Pulstar Aegis' },
+      { id: 'sengoku2', name: 'Sengoku 2 - Let there be blood' },
+      { id: 'wjammers', name: 'Windjammers - Endless Breeze' },
+      { id: 'cyberlip', name: 'Cyber-Lip - The Alien Wars', coming: 'Coming later' },
+      { id: 'ssideki3', name: 'Super Sidekicks 3', coming: 'Coming later', zoom: 150 },
+    ];
+
+    const THEMES = [
+      { cls: 't1', fam: 'amber',  name: 'Amber',           note: 'Warm amber on near-black.',      sw: ['#0a0806', '#1a1510', '#f5a623'] },
+      { cls: 't2', fam: 'amber',  name: 'Honey Gold',      note: 'Brighter yellow-gold.',          sw: ['#0a0a07', '#1a1710', '#ecc02e'] },
+      { cls: 't3', fam: 'amber',  name: 'Ember Orange',    note: 'Amber pushed toward orange.',    sw: ['#0b0705', '#1c140f', '#f47a2a'] },
+      { cls: 't4', fam: 'violet', name: 'Electric Violet', note: 'Vivid violet, cool black.',      sw: ['#08070d', '#171125', '#9d6bff'] },
+      { cls: 't5', fam: 'violet', name: 'Neon Amethyst',   note: 'Magenta-leaning violet.',        sw: ['#0a0710', '#1c1330', '#cf5cff'] },
+      { cls: 't6', fam: 'violet', name: 'Indigo Violet',   note: 'Cooler indigo-violet.',          sw: ['#08080f', '#15142b', '#7d74ff'] },
+    ];
+
+    const QUOTE = '“A romhack is a love letter to a game you never stopped playing.”';
+
+    function el(tag, cls, html) {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (html != null) e.innerHTML = html;
+      return e;
+    }
+
+    function headerEl() {
+      const head = el('header', 'site-header');
+      head.append(el('h1', 'logo', 'NEO•GEO romhacks'));
+      const links = el('div', 'header-links');
+      for (const t of ['Disclaimer', 'Thanks', 'Questions? Remarks?', 'Discord', 'Like my work? Buy me a coffee  ☕']) {
+        links.append(el('span', 'hlink', t));
+      }
+      head.append(links);
+      head.append(el('div', 'gold-rule'));
+      head.append(el('p', 'splash', QUOTE));
+      return head;
+    }
+
+    function cardEl(g) {
+      const card = el('button', 'game-card' + (g.selected ? ' selected' : '') + (g.coming ? ' coming' : ''));
+      const logo = el('div', 'game-logo');
+      const img = el('img');
+      img.src = 'public/patches/' + g.id + '/logo.png';
+      img.alt = g.name;
+      if (g.zoom) img.style.setProperty('--logo-zoom', String(g.zoom / 100));
+      logo.append(img);
+      card.append(logo);
+      if (g.coming) card.append(el('div', 'coming-badge', g.coming));
+      return card;
+    }
+
+    function gridEl() {
+      const grid = el('div', 'games-grid');
+      for (const g of GAMES) grid.append(cardEl(g));
+      return grid;
+    }
+
+    function swatchRow(colors) {
+      const row = el('div', 'swatches');
+      for (const c of colors) {
+        const s = el('div', 'swatch');
+        s.style.background = c;
+        s.title = c;
+        row.append(s);
+      }
+      return row;
+    }
+
+    const app = document.getElementById('app');
+    THEMES.forEach((t, i) => {
+      const variant = el('section', 'variant');
+      const label = el('div', 'label');
+      label.append(el('span', 'badge', String(i + 1)));
+      label.append(el('span', 'fam ' + t.fam, t.fam));
+      label.append(el('span', 'name', t.name));
+      label.append(el('span', 'meta', t.note));
+      label.append(swatchRow(t.sw));
+      variant.append(label);
+
+      const site = el('div', 'site ' + t.cls);
+      site.append(headerEl());
+      site.append(gridEl());
+      variant.append(site);
+      app.append(variant);
+    });
+  </script>
+</body>
+</html>

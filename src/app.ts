@@ -453,7 +453,6 @@ const FORMATS: { id: OutputFormat; name: string; sub: string }[] = [
 ];
 
 function formats(): HTMLElement {
-  ''
   const row = h('div', { class: 'formats' });
   for (const o of FORMATS) {
     row.append(
@@ -473,6 +472,53 @@ function formats(): HTMLElement {
     );
   }
   return row;
+}
+
+// The "How to use it" callout under the format picker: a clear, step-by-step procedure per format.
+function formatGuide(format: OutputFormat, gameId: string): HTMLElement {
+  const steps = h('ul', { class: 'fmt-guide-steps' });
+  const extra: HTMLElement[] = [];
+
+  if (format === 'mame') {
+    steps.append(
+      h('li', {}, 'Drop the generated ', h('code', {}, gameId + '.zip'),
+        " into your emulator's roms/ folder. Please note that because the ROM data is patched, MAME sees a checksum mismatch and will flag the set as a ",
+        h('strong', {}, 'BAD DUMP'), ", you'll have to launch it from the command line."),
+    );
+    extra.push(
+      h('div', { class: 'fmt-guide-callout' },
+        h('span', { class: 'fmt-guide-callout-title' }, 'Note for Recalbox users'),
+        ' Using the ', h('strong', {}, '.neo file'),
+        ' loaded with Geolith core is ', h('strong', {}, 'strongly recommended'), '.',
+        h('br'), h('br'),
+        'If you really want the zipped rom file, drop the generated ',
+        h('code', {}, gameId + '.zip'), ' into ',
+        h('code', {}, '/recalbox/share/bios/fbneo/patched/'),
+        '(create it if necessary) while keeping the original rom in the usual folder to bypass the CRC check.'),
+    );
+  } else if (format === 'neo') {
+    steps.append(
+      h('li', {}, 'Copy the generated ', h('code', {}, gameId + '.neo'),
+        ' onto your NeoSD SD card, or into your MiSTer ', h('code', {}, 'games/NeoGeo/'), ' folder.')
+    );
+    extra.push(
+      h('div', { class: 'fmt-guide-callout' },
+        h('span', { class: 'fmt-guide-callout-title' }, 'Note for Recalbox users'),
+        ' You have to run the .neo file with the ', h('code', {}, 'Geolith'),
+        ' core.'),
+    );
+  } else {
+    steps.append(
+      h('li', {}, 'Only the files this patch changes are produced. Drop them into your existing ', h('code', {}, 'games/' + gameId + '/'),
+        ' folder, overwriting the matching files and leaving every other file in place.'),
+    );
+  }
+
+  return h('div', { class: 'fmt-guide' },
+    h('div', { class: 'fmt-guide-title' }, 'How to use it'),
+    steps,
+    ...extra,
+  );
 }
 
 function versionSelector(patch: PatchIndexEntry): HTMLElement {
@@ -619,27 +665,7 @@ function patchView(patch: PatchIndexEntry): HTMLElement {
     state.entries.length > 0 ? fileStatus() : document.createTextNode(''),
     h('div', { class: 'field-label' }, 'Choose your output format'),
     formats(),
-    state.format === 'darksoft'
-      ? h(
-        'div',
-        { class: 'fmt-note' },
-        'Please note that only the files this patch changes are produced. Drop them into your existing games/' +
-        (game?.id ?? '') +
-        '/ folder, keeping the others (m1rom, vroma0, crom0, fpga).',
-      )
-      : state.format === 'neo'
-        ? h(
-          'div',
-          { class: 'fmt-note' },
-          'The .neo file also works with the Geolith emulator and the MiSTer FPGA Neo Geo core: they use the same format as the NeoSD.',
-        )
-        : h(
-          'div',
-          { class: 'fmt-note' },
-          'Warning: MAME checks ROM checksums, so it flags a patched set as a bad dump. Launch it from the command line (mame ' +
-          (game?.id ?? '<game>') +
-          ') to run past the warning.',
-        ),
+    formatGuide(state.format, game?.id ?? '<game>'),
     actions,
   );
 
@@ -661,7 +687,7 @@ function footer(): HTMLElement {
         'Open an issue on GitHub ↗',
       ),
     ),
-    h('div', { class: 'copyright' }, '© 2026 Jérémy Lemaire aka Boomchil'),
+    h('div', { class: 'copyright' }, '© 2026 Jérémy Lemaire / Boomchil'),
     h(
       'div',
       { class: 'legal' },
