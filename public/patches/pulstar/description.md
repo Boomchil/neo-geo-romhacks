@@ -36,7 +36,10 @@ After inserting a credit, the Compulsion Screen shows up for the delay set in th
 
 With Freeplay enabled, the Compulsion Screen is skipped entirely. Simply wait until the end of the demo, when the Pulstar logo appears with the planet in the background, then press [D] to open the options menu.
 
+### Gallery
 
 ```gallery
+media/title.png 
+media/options.png 
 media/pulstar-aegis-preview.mp4 Autofire, Armor Points & Fast charge...
 ```
